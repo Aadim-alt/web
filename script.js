@@ -1,3 +1,4 @@
+
 document.getElementById('toggle-mode').addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
 });
@@ -16,7 +17,8 @@ fetch('posts.json')
             posts
                 .filter(post =>
                     post.title.toLowerCase().includes(filter.toLowerCase()) ||
-                    post.content.toLowerCase().includes(filter.toLowerCase())
+                    post.content.toLowerCase().includes(filter.toLowerCase()) ||
+                    post.date.toLowerCase().includes(filter.toLowerCase())
                 )
                 .forEach(post => {
                     const div = document.createElement('div');
