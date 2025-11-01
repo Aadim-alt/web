@@ -7,6 +7,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Dark mode toggle icon styles */
+        #toggle-mode::after {
+            content: '☀️';
+            font-size: 20px;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.dark-mode #toggle-mode::after {
+            content: '🌙';
+            transform: rotate(360deg);
+        }
+
+        #toggle-mode:hover::after {
+            transform: scale(1.2) rotate(20deg);
+        }
+
+        body.dark-mode #toggle-mode:hover::after {
+            transform: scale(1.2) rotate(380deg);
+        }
+    </style>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -18,7 +41,7 @@
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="blog.html">Blog</a></li>
             </ul>
-            <button id="toggle-mode" aria-label="Toggle dark mode">🌙</button>
+            <button id="toggle-mode" aria-label="Toggle dark mode"></button>
         </div>
     </nav>
     <main>
@@ -46,6 +69,5 @@
             </a>
         </div>
     </footer>
-
 </body>
 </html>
