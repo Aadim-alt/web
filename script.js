@@ -1,6 +1,14 @@
+// Initialize in light mode
+document.body.classList.add('light-mode');
 
 document.getElementById('toggle-mode').addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
+    if (document.body.classList.contains('light-mode')) {
+        document.body.classList.remove('light-mode');
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+        document.body.classList.add('light-mode');
+    }
 });
 
 fetch('posts.json')
@@ -8,10 +16,8 @@ fetch('posts.json')
     .then(posts => {
         const container = document.getElementById('blog-posts');
         const searchInput = document.getElementById('search');
-
         // Sort posts by date (newest first)
         posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
         function renderPosts(filter = '') {
             container.innerHTML = '';
             posts
@@ -29,10 +35,8 @@ fetch('posts.json')
                     container.appendChild(div);
                 });
         }
-
         searchInput.addEventListener('input', () => {
             renderPosts(searchInput.value);
         });
-
         renderPosts();
     });
