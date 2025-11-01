@@ -31,16 +31,7 @@
             line-height: 1.6;
         }
 
-        body.light-mode {
-            --primary: #ffffff;
-            --secondary: #f8f8f8;
-            --accent: #8b7355;
-            --accent-light: #a68968;
-            --text: #0f0f0f;
-            --text-secondary: #666666;
-            --glass: rgba(0, 0, 0, 0.03);
-            --border: rgba(139, 115, 85, 0.2);
-        }
+
 
         /* Animated Background */
         .bg-gradient {
@@ -128,26 +119,7 @@
             width: 100%;
         }
 
-        .mode-toggle {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 18px;
-        }
 
-        .mode-toggle:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            transform: rotate(180deg);
-        }
 
         /* Hero Section */
         .hero {
@@ -851,7 +823,7 @@
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="mode-toggle" id="modeToggle">🌙</button>
+
         </div>
     </nav>
 
@@ -1003,14 +975,7 @@
     </footer>
 
     <script>
-        // Dark/Light mode toggle
-        const modeToggle = document.getElementById('modeToggle');
-        const body = document.body;
 
-        modeToggle.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            modeToggle.textContent = body.classList.contains('light-mode') ? '🌙' : '☀️';
-        });
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
