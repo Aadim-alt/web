@@ -1,0 +1,12 @@
+[
+    {
+        "title": "My First Blog Post",
+        "date": "2025-11-01",
+        "content": "This is my first blog post using a JSON file. I'm excited to share my thoughts here!"
+    },
+    {
+        "title": "Responsive Design Tips",
+        "date": "2025-11-02",
+        "content": "Responsive design ensures your website looks great on all devices. Use flexible layouts, media queries, and scalable units like percentages and ems."
+    }
+]
