@@ -1,4 +1,9 @@
-[
+[    
+    {
+        "title": "Thinking About My Future Master's",
+        "date": "2025-11-01",
+        "content": "I’ve just started my BSc in Computing,ah yeah i chose it and I’m already thinking ahead about a possible Master's in cybersecurity or quantum computing. I plan to use this blog to track my learning, explore tech topics, and reflect on my journey. I am interested in Both CYber Security and Quantum computing what a dilema"
+    },
     {
         "title": "My First Blog Post",
         "date": "2025-11-01",
@@ -8,11 +13,7 @@
         "title": "Responsive Design Tips",
         "date": "2025-11-01",
         "content": "Responsive design ensures your website looks great on all devices. Use flexible layouts, media queries, and scalable units like percentages and ems."
-    },
-    {
-        "title": "Thinking About My Future Master's",
-        "date": "2025-11-01",
-        "content": "I’ve just started my BSc in Computing,ah yeah i chose it and I’m already thinking ahead about a possible Master's in cybersecurity or quantum computing. I plan to use this blog to track my learning, explore tech topics, and reflect on my journey. I am interested in Both CYber Security and Quantum computing what a dilema"
     }
+    
 
 ]
