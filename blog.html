@@ -249,6 +249,17 @@
             box-shadow: 0 20px 60px rgba(201, 165, 93, 0.2);
         }
 
+        .post.highlighted {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(201, 165, 93, 0.3);
+            background: rgba(201, 165, 93, 0.1);
+            transform: scale(1.02);
+        }
+
+        .post.expanded {
+            grid-column: 1 / -1;
+        }
+
         .post-category {
             display: inline-block;
             padding: 6px 16px;
@@ -283,6 +294,17 @@
             margin-bottom: 20px;
         }
 
+        .post-preview {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .post-full {
+            display: block;
+        }
+
         .read-more {
             color: var(--accent);
             text-decoration: none;
@@ -291,6 +313,7 @@
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
             display: inline-block;
+            cursor: pointer;
         }
 
         .read-more:hover {
@@ -473,14 +496,12 @@
     </footer>
 
     <script>
-        // Sample blog posts data
         const posts = [
             {
                 title: "My New Project",
                 date: "November 01, 2025",
                 category: "Coding",
                 content: "I just made a project Ghost Chat that I actually always tried to make will always fuck up because of some shit which today is finally complete. A totally encrypted secure chat no data no cookies messenger like site for criminal activitist like drug and guns smuggling, haha just kidding but who knows."
-
             },
             {
                 title: "The Future of Web Development",
@@ -542,6 +563,7 @@
         const searchInput = document.getElementById('search');
         const noResults = document.getElementById('no-results');
         const modeToggle = document.getElementById('modeToggle');
+        let expandedPostIndex = null;
 
         function renderPosts(filter = '') {
             const filteredPosts = posts.filter(post =>
@@ -563,29 +585,75 @@
                     const postElement = document.createElement('div');
                     postElement.className = 'post';
                     postElement.style.animationDelay = `${index * 0.1}s`;
+                    postElement.dataset.index = index;
+                    
+                    const isExpanded = expandedPostIndex === index;
+                    
                     postElement.innerHTML = `
                         <span class="post-category">${post.category}</span>
                         <div class="post-date">${post.date}</div>
                         <h3>${post.title}</h3>
-                        <p>${post.content}</p>
-                        <a href="#" class="read-more">Read More →</a>
+                        <p class="${isExpanded ? 'post-full' : 'post-preview'}">${post.content}</p>
+                        <a class="read-more">${isExpanded ? '← Show Less' : 'Read More →'}</a>
                     `;
+                    
+                    if (isExpanded) {
+                        postElement.classList.add('expanded', 'highlighted');
+                    }
+                    
+                    const readMoreBtn = postElement.querySelector('.read-more');
+                    readMoreBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        togglePost(index, postElement);
+                    });
+                    
                     blogPostsContainer.appendChild(postElement);
                 });
             }
         }
 
+        function togglePost(index, element) {
+            const allPosts = document.querySelectorAll('.post');
+            
+            if (expandedPostIndex === index) {
+                expandedPostIndex = null;
+                element.classList.remove('expanded', 'highlighted');
+                const content = element.querySelector('p');
+                const btn = element.querySelector('.read-more');
+                content.className = 'post-preview';
+                btn.textContent = 'Read More →';
+            } else {
+                allPosts.forEach(post => {
+                    post.classList.remove('expanded', 'highlighted');
+                    const content = post.querySelector('p');
+                    const btn = post.querySelector('.read-more');
+                    content.className = 'post-preview';
+                    btn.textContent = 'Read More →';
+                });
+                
+                expandedPostIndex = index;
+                element.classList.add('expanded', 'highlighted');
+                const content = element.querySelector('p');
+                const btn = element.querySelector('.read-more');
+                content.className = 'post-full';
+                btn.textContent = '← Show Less';
+                
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+        }
+
         searchInput.addEventListener('input', (e) => {
+            expandedPostIndex = null;
             renderPosts(e.target.value);
         });
 
-        // Dark/Light mode toggle
         modeToggle.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
             modeToggle.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
         });
 
-        // Initial render
         renderPosts();
     </script>
 </body>
